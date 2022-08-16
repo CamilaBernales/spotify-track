@@ -3,6 +3,7 @@ import { ChakraProvider, extendTheme } from "@chakra-ui/react";
 import type { AppProps } from "next/app";
 import PlayerLoyout from "../components/PlayerLoyout";
 
+
 const theme = extendTheme({
   colors: {
     gray: {
@@ -33,9 +34,13 @@ const theme = extendTheme({
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <ChakraProvider theme={theme}>
-      <PlayerLoyout>
-        <Component {...pageProps} />
-      </PlayerLoyout>
+        {Component.authPage ? (
+          <Component {...pageProps} />
+        ) : (
+          <PlayerLoyout>
+            <Component {...pageProps} />
+          </PlayerLoyout>
+        )}
     </ChakraProvider>
   );
 }
